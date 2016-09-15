@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <span *ngIf="latest">{{latest.sensor_id}}</span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="sensor">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+   <ion-refresher-content
+    pullingIcon="arrow-dropdown"
+     pullingText="Pull to refresh"
+     refreshingSpinner="circles"
+     refreshingText="Refreshing...">
+   </ion-refresher-content>
+  </ion-refresher>
+  <div *ngIf="latest" class="center selection">
+    <h3>Temperature</h3>
+    <h1>{{latest.temperature}} °C</h1>
+    <h3>Humidity</h3>
+    <h1>{{latest.humidity}} %</h1>
+    <span>Last updated at {{latest.updated_at | date: 'HH:mm:ss' }}</span>
+  </div>
+</ion-content>
